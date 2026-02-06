@@ -33,8 +33,9 @@ const categories = [
     name: "Makeup",
     path: "/products?category=Makeup",
     icon: Sparkles,
-    gradient: "from-pink-400 to-rose-500",
-    glowColor: "shadow-pink-500/30",
+    gradient: "from-pink-400 to-rose-400",
+    bgColor: "bg-pink-500",
+    glowColor: "shadow-pink-500/20",
     description: "Beauty Essentials",
     emoji: "💄",
   },
@@ -42,8 +43,9 @@ const categories = [
     name: "Face Care",
     path: "/products?category=Face+Care",
     icon: Sun,
-    gradient: "from-amber-400 to-orange-500",
-    glowColor: "shadow-amber-500/30",
+    gradient: "from-amber-400 to-orange-400",
+    bgColor: "bg-orange-500",
+    glowColor: "shadow-orange-500/20",
     description: "Radiant Skin",
     emoji: "✨",
   },
@@ -51,8 +53,9 @@ const categories = [
     name: "Hair Care",
     path: "/products?category=Hair+Care",
     icon: Wind,
-    gradient: "from-purple-400 to-indigo-500",
-    glowColor: "shadow-purple-500/30",
+    gradient: "from-primary to-cyan-400",
+    bgColor: "bg-primary",
+    glowColor: "shadow-primary/20",
     description: "Healthy & Strong",
     emoji: "💇‍♀️",
   },
@@ -64,23 +67,18 @@ export default function ProductCategories() {
       <style jsx>{animationStyles}</style>
 
       {/* Background Elements */}
-      <div className="absolute inset-0 bg-linear-to-br from-purple-50/50 via-pink-50/30 to-blue-50/50 dark:from-purple-950/20 dark:via-pink-950/10 dark:to-blue-950/20"></div>
-      <div className="absolute top-0 left-1/4 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl animate-pulse"></div>
-      <div
-        className="absolute bottom-0 right-1/4 w-96 h-96 bg-pink-300/20 rounded-full blur-3xl animate-pulse"
-        style={{ animationDelay: "1s" }}
-      ></div>
+      <div className="absolute inset-0 bg-muted"></div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         {/* Enhanced Section Title */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-black mb-4 bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-black mb-4 text-foreground">
             🛍️ Shop by Category
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium">
             Explore our curated collection of premium beauty and wellness products
           </p>
-          <div className="w-24 h-1 bg-linear-to-r from-purple-500 to-pink-500 mx-auto mt-4 rounded-full"></div>
+          <div className="w-24 h-1 bg-primary mx-auto mt-4 rounded-full"></div>
         </div>
 
         {/* Enhanced Categories Grid */}
@@ -122,7 +120,7 @@ export default function ProductCategories() {
 
                   {/* Enhanced Text */}
                   <div className="space-y-1 md:space-y-2">
-                    <h3 className="font-bold text-base md:text-lg text-foreground group-hover:bg-linear-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                    <h3 className="font-bold text-base md:text-lg text-foreground transition-all duration-300">
                       {category.name}
                     </h3>
                     <p className="text-sm text-muted-foreground font-medium opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
@@ -132,7 +130,7 @@ export default function ProductCategories() {
 
                   {/* Interactive Arrow */}
                   <div className="mt-4 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 delay-100">
-                    <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-linear-to-r from-purple-500 to-pink-500 text-white">
+                    <div className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-primary text-white">
                       <svg
                         className="w-4 h-4"
                         fill="none"

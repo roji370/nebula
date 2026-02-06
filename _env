@@ -1,0 +1,61 @@
+# ==============================================
+# CORE CONFIGURATION
+# ==============================================
+
+# Currency
+NEXT_PUBLIC_CURRENCY=INR
+
+
+# ==============================================
+# DATABASE
+# ==============================================
+
+# Clerk (Authentication)
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_test_bWlnaHR5LW9hcmZpc2gtNjEuY2xlcmsuYWNjb3VudHMuZGV2JA
+CLERK_SECRET_KEY=sk_test_tPlBE4O8Pamnt1qGozyuUEtjXNtaF5sIjwEXPX1lP5
+# Database (MongoDB)
+DATABASE_URL="mongodb+srv://abrahul02:rAUMfsLxxqVcp83z@cluster0.o96bnxn.mongodb.net/nebula?retryWrites=true&w=majority&appName=Cluster0"
+# UploadThing (File uploads)
+UPLOADTHING_TOKEN='eyJhcGlLZXkiOiJza19saXZlX2FkODNlYzQ2NGZhZTZmNmNkNzUxMzRiODUyYmZjMmI3ZjU5ZDExN2FkODlkMjI3YTFmMzY4N2I4NjQyOWIxZjMiLCJhcHBJZCI6Imp2dXJ1cGlrMGQiLCJyZWdpb25zIjpbInNlYTEiXX0='
+
+# ==============================================
+# PAYMENT GATEWAY
+# ==============================================
+
+RAZORPAY_KEY_ID=rzp_live_RnweIlCInY08C8
+RAZORPAY_KEY_SECRET=SaThNcP21AAaXRRiUp1XpY2u
+
+# ==============================================
+# SOCIAL MEDIA INTEGRATION
+# ==============================================
+
+NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/asheerchandra
+NEXT_PUBLIC_FACEBOOK_URL=https://www.facebook.com/profile.php?id=61582805201379
+NEXT_PUBLIC_TWITTER_URL=https://twitter.com/your-handle
+
+# ==============================================
+# WHATSAPP BUSINESS
+# ==============================================
+
+# WhatsApp Business Number (format: country code + number, no spaces or special characters)
+# Example: For +91 87143 20563, use: 918714320563
+NEXT_PUBLIC_WHATSAPP_NUMBER=918714320563
+
+# ==============================================
+# STORE LOCATION (for Locate Store page)
+# ==============================================
+
+# Store Address
+NEXT_PUBLIC_STORE_ADDRESS=Chandrakantham Associates, Vellangallur
+NEXT_PUBLIC_STORE_CITY=Thrissur
+NEXT_PUBLIC_STORE_STATE=Kerala
+NEXT_PUBLIC_STORE_ZIP=680662
+
+# Store Contact
+NEXT_PUBLIC_STORE_PHONE=+91 87143 20563
+NEXT_PUBLIC_STORE_EMAIL=nikachandra7@gmail.com
+
+# Google Maps Embed URL
+# Get this from: https://www.google.com/maps > Share > Embed a map
+# Example: https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d...
+NEXT_PUBLIC_STORE_MAP_EMBED_URL=https://www.google.com/maps?q=10.3099238,76.2129651&output=embed

@@ -7,7 +7,8 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans:
-    var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
   --font-mono:
     "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -47,113 +48,69 @@
 
 :root {
   --radius: 0.5rem;
-  /* 8px - Mamaearth uses slightly rounded corners */
+  /* 8px - Nykaa uses slightly tighter rounding than Mamaearth */
 
-  /* Mamaearth Color Palette - Clean, Trustworthy, Natural */
+  /* Nykaa Color Palette - Feminine, Bold, Premium */
   --background: oklch(1 0 0);
-  /* Pure white #FFFFFF */
-  --foreground: oklch(0.25 0.01 280);
-  /* Dark grey #212121 */
+  /* Pure White */
+  --foreground: oklch(0.2 0.01 300);
+  /* Deep Black/Charcoal */
 
   --card: oklch(1 0 0);
-  /* White cards */
-  --card-foreground: oklch(0.25 0.01 280);
+  --card-foreground: oklch(0.2 0.01 300);
 
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.25 0.01 280);
+  --popover-foreground: oklch(0.2 0.01 300);
 
-  /* Primary: Mamaearth Cyan Blue #00AEEF */
-  --primary: oklch(0.65 0.15 230);
-  /* Bright cyan blue */
+  /* Primary: Nykaa Hot Pink #FC2779 */
+  --primary: oklch(0.6 0.22 350);
+  /* Vibrant Hot Pink */
   --primary-foreground: oklch(1 0 0);
-  /* White text on blue */
+  /* White text on pink */
 
-  /* Secondary: Light Green for offers/badges #76BD43 */
-  --secondary: oklch(0.7 0.12 140);
-  /* Fresh green */
+  /* Secondary: Nykaa Teal/Turquoise (often used for offers/success) */
+  --secondary: oklch(0.7 0.15 180);
+  /* Teal/Cyan */
   --secondary-foreground: oklch(1 0 0);
 
-  --muted: oklch(0.97 0.005 280);
-  /* Very light grey #F8F8F8 */
-  --muted-foreground: oklch(0.55 0.01 280);
-  /* Medium grey #757575 */
+  /* Accent: Soft Blush Pinks */
+  --accent: oklch(0.96 0.03 350);
+  /* Very light pink background */
+  --accent-foreground: oklch(0.6 0.22 350);
+  /* Hot pink text on accent */
 
-  --accent: oklch(0.97 0.005 280);
-  /* Light grey accent */
-  --accent-foreground: oklch(0.25 0.01 280);
+  --muted: oklch(0.97 0 0);
+  /* Light grey */
+  --muted-foreground: oklch(0.55 0 0);
+  /* Medium grey */
 
   --destructive: oklch(0.55 0.22 25);
-  /* Red for errors */
+  /* Red */
 
-  --border: oklch(0.92 0.005 280);
-  /* Light grey borders #E0E0E0 */
-  --input: oklch(0.97 0.005 280);
-  /* Light input backgrounds */
-  --ring: oklch(0.65 0.15 230);
-  /* Cyan blue focus ring */
+  --border: oklch(0.92 0 0);
+  /* Light grey borders */
+  --input: oklch(0.96 0 0);
+  --ring: oklch(0.6 0.22 350);
+  /* Pink focus ring */
 
-  --chart-1: oklch(0.65 0.15 230);
-  /* Cyan */
-  --chart-2: oklch(0.7 0.12 140);
-  /* Green */
-  --chart-3: oklch(0.62 0.2 40);
-  /* Orange */
-  --chart-4: oklch(0.7 0.18 160);
-  /* Teal */
-  --chart-5: oklch(0.65 0.19 25);
-  /* Coral */
+  /* Additional Nykaa Brand Colors */
+  --nykaa-pink: oklch(0.6 0.22 350);
+  --nykaa-grey: oklch(0.4 0 0);
 
-  --sidebar: oklch(1 0 0);
-  --sidebar-foreground: oklch(0.25 0.01 280);
-  --sidebar-primary: oklch(0.65 0.15 230);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.97 0.005 280);
-  --sidebar-accent-foreground: oklch(0.25 0.01 280);
-  --sidebar-border: oklch(0.92 0.005 280);
-  --sidebar-ring: oklch(0.65 0.15 230);
-}
-
-.dark {
-  /* Warmer, more inviting dark palette with better contrast */
-  --background: oklch(0.12 0.025 280);
-  /* Slightly warmer dark with purple hint */
-  --foreground: oklch(0.97 0.005 60);
-  --card: oklch(0.17 0.03 280);
-  /* Elevated card with warmth */
-  --card-foreground: oklch(0.97 0.005 60);
-  --popover: oklch(0.17 0.03 280);
-  --popover-foreground: oklch(0.97 0.005 60);
-  --primary: oklch(0.68 0.2 285);
-  /* Brighter purple with good contrast */
-  --primary-foreground: oklch(0.12 0.025 280);
-  --secondary: oklch(0.22 0.04 290);
-  --secondary-foreground: oklch(0.97 0.005 60);
-  --muted: oklch(0.22 0.03 280);
-  --muted-foreground: oklch(0.68 0.05 280);
-  --accent: oklch(0.24 0.045 300);
-  --accent-foreground: oklch(0.97 0.005 60);
-  --destructive: oklch(0.65 0.2 25);
-  --border: oklch(0.28 0.04 280);
-  --input: oklch(0.26 0.04 280);
-  --ring: oklch(0.68 0.2 285);
-  --chart-1: oklch(0.68 0.2 285);
-  /* Purple */
-  --chart-2: oklch(0.65 0.2 330);
+  --chart-1: oklch(0.6 0.22 350);
   /* Pink */
-  --chart-3: oklch(0.67 0.19 40);
-  /* Orange */
-  --chart-4: oklch(0.7 0.18 160);
+  --chart-2: oklch(0.7 0.15 180);
   /* Teal */
-  --chart-5: oklch(0.68 0.19 25);
-  /* Coral */
-  --sidebar: oklch(0.12 0.025 280);
-  --sidebar-foreground: oklch(0.97 0.005 60);
-  --sidebar-primary: oklch(0.68 0.2 285);
-  --sidebar-primary-foreground: oklch(0.12 0.025 280);
-  --sidebar-accent: oklch(0.22 0.04 290);
-  --sidebar-accent-foreground: oklch(0.97 0.005 60);
-  --sidebar-border: oklch(0.28 0.04 280);
-  --sidebar-ring: oklch(0.68 0.2 285);
+  --chart-3: oklch(0.85 0.1 85);
+  /* Gold/Orange */
+
+  --sidebar-foreground: oklch(0.2 0.01 300);
+  --sidebar-primary: oklch(0.6 0.22 350);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.96 0.03 350);
+  --sidebar-accent-foreground: oklch(0.6 0.22 350);
+  --sidebar-border: oklch(0.92 0 0);
+  --sidebar-ring: oklch(0.6 0.22 350);
 }
 
 @layer base {
@@ -195,7 +152,6 @@
 }
 
 @layer utilities {
-
   /* Custom animations for the enhanced components */
   @keyframes fade-in-up {
     0% {
@@ -220,7 +176,6 @@
   }
 
   @keyframes float {
-
     0%,
     100% {
       transform: translateY(0px);
@@ -232,7 +187,6 @@
   }
 
   @keyframes glow {
-
     0%,
     100% {
       opacity: 0.4;
@@ -244,7 +198,6 @@
   }
 
   @keyframes pulse-slow {
-
     0%,
     100% {
       opacity: 1;
@@ -315,18 +268,5 @@
     box-shadow:
       0 10px 40px -5px rgba(0, 0, 0, 0.5),
       0 4px 16px -4px rgba(0, 0, 0, 0.3);
-  }
-
-  /* Gradient text utilities */
-  .text-gradient-primary {
-    @apply bg-linear-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent;
-  }
-
-  .text-gradient-warm {
-    @apply bg-linear-to-r from-orange-500 via-rose-500 to-pink-600 bg-clip-text text-transparent;
-  }
-
-  .text-gradient-success {
-    @apply bg-linear-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent;
   }
 }

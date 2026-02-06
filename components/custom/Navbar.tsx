@@ -31,57 +31,57 @@ export default function Navbar() {
 
   const NavbarData = user
     ? [
-      {
-        label: "Home",
-        href: "/",
-      },
-      {
-        label: "About",
-        href: "/about",
-      },
-      {
-        label: "Products",
-        href: "/products",
-      },
-      {
-        label: "My Orders",
-        href: "/my-orders",
-      },
-      {
-        label: "Locate Store",
-        href: "/locate-store",
-      },
-      ...(isSeller
-        ? [
-          {
-            label: "Seller Dashboard",
-            href: "/seller",
-          },
-        ]
-        : []),
-    ]
+        {
+          label: "Home",
+          href: "/",
+        },
+        {
+          label: "About",
+          href: "/about",
+        },
+        {
+          label: "Products",
+          href: "/products",
+        },
+        {
+          label: "My Orders",
+          href: "/my-orders",
+        },
+        {
+          label: "Locate Store",
+          href: "/locate-store",
+        },
+        ...(isSeller
+          ? [
+              {
+                label: "Seller Dashboard",
+                href: "/seller",
+              },
+            ]
+          : []),
+      ]
     : [
-      {
-        label: "Home",
-        href: "/",
-      },
-      {
-        label: "About",
-        href: "/about",
-      },
-      {
-        label: "Products",
-        href: "/products",
-      },
-      {
-        label: "Locate Store",
-        href: "/locate-store",
-      },
-      {
-        label: "Contact",
-        href: "/contact",
-      },
-    ];
+        {
+          label: "Home",
+          href: "/",
+        },
+        {
+          label: "About",
+          href: "/about",
+        },
+        {
+          label: "Products",
+          href: "/products",
+        },
+        {
+          label: "Locate Store",
+          href: "/locate-store",
+        },
+        {
+          label: "Contact",
+          href: "/contact",
+        },
+      ];
 
   // use the shared category palette for subtle gradients in the navbar
   const palette = getPalette(0); // using the first palette (violet-pink-blue)
@@ -102,10 +102,11 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg group ${pathname === item.href
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      }`}
+                    className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg group ${
+                      pathname === item.href
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
                   >
                     {item.label}
                     {pathname === item.href && (
@@ -260,10 +261,11 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center px-4 py-3 text-base font-semibold rounded-xl transition-all duration-200 active:scale-95 ${pathname === item.href
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                      }`}
+                    className={`flex items-center px-4 py-3 text-base font-semibold rounded-xl transition-all duration-200 active:scale-95 ${
+                      pathname === item.href
+                        ? "text-primary bg-primary/10"
+                        : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                    }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
@@ -286,7 +288,7 @@ export default function Navbar() {
                   </Link>
                   <Link
                     href="/cart"
-                    className="flex items-center px-4 py-3 text-base font-semibold text-muted-foreground hover:text-foreground hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 rounded-xl transition-all duration-200 active:scale-95"
+                    className="flex items-center px-4 py-3 text-base font-semibold text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all duration-200 active:scale-95"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Cart

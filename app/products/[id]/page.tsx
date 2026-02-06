@@ -456,9 +456,7 @@ export default function ProductPage() {
 
         {/* Reviews Section */}
         <div className="mt-12">
-          <h2 className="text-3xl font-bold mb-8 text-center bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-            Customer Reviews
-          </h2>
+          <h2 className="text-3xl font-bold mb-8 text-center text-foreground">Customer Reviews</h2>
 
           <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {/* Review Form */}

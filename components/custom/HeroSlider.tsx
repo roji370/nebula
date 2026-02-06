@@ -148,7 +148,7 @@ export default function HeroSlider() {
                     {/* Product Content */}
                     <div className="text-center md:text-left">
                       {slide.title && (
-                        <h1 className="text-4xl md:text-5xl font-black mb-4 text-gradient-primary animate-fade-in-up">
+                        <h1 className="text-4xl md:text-5xl font-black mb-4 text-primary animate-fade-in-up">
                           {slide.title}
                         </h1>
                       )}
@@ -186,48 +186,36 @@ export default function HeroSlider() {
         ))}
       </div>
 
-      {/* Enhanced Navigation Arrows with Warmer Design */}
+      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
-        className="absolute left-6 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-linear-to-r hover:from-purple-500/80 hover:via-pink-500/80 hover:to-orange-500/80 backdrop-blur-xl text-white p-4 rounded-full transition-all duration-300 hover:scale-110 border border-white/30 shadow-xl z-20 group"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white text-white hover:text-primary backdrop-blur-md p-3 rounded-full transition-all duration-300 shadow-lg z-20 border border-white/50"
         aria-label="Previous slide"
       >
-        <ChevronLeft className="w-6 h-6 group-hover:scale-110 transition-transform" />
+        <ChevronLeft className="w-6 h-6" />
       </button>
 
       <button
         onClick={nextSlide}
-        className="absolute right-6 top-1/2 -translate-y-1/2 bg-white/15 hover:bg-linear-to-r hover:from-purple-500/80 hover:via-pink-500/80 hover:to-orange-500/80 backdrop-blur-xl text-white p-4 rounded-full transition-all duration-300 hover:scale-110 border border-white/30 shadow-xl z-20 group"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/30 hover:bg-white text-white hover:text-primary backdrop-blur-md p-3 rounded-full transition-all duration-300 shadow-lg z-20 border border-white/50"
         aria-label="Next slide"
       >
-        <ChevronRight className="w-6 h-6 group-hover:scale-110 transition-transform" />
+        <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Enhanced Slide Indicators with Warmer Colors */}
-      <div className="hidden md:absolute md:bottom-8 md:left-1/2 md:-translate-x-1/2 md:flex md:space-x-4 z-20">
+      {/* Slide Indicators */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3 z-20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => goToSlide(index)}
             className={cn(
-              "w-4 h-4 rounded-full transition-all duration-300 border-2 border-white/40",
-              currentSlide === index
-                ? "bg-linear-to-r from-purple-500 via-pink-500 to-orange-500 scale-125 shadow-lg"
-                : "bg-white/40 hover:bg-white/70 hover:scale-110"
+              "w-2.5 h-2.5 rounded-full transition-all duration-300",
+              currentSlide === index ? "bg-primary w-8" : "bg-white/60 hover:bg-white"
             )}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}
-      </div>
-
-      {/* Enhanced Progress Bar with Warmer Gradient */}
-      <div className="absolute bottom-0 left-0 w-full h-2 bg-linear-to-r from-purple-600/20 via-pink-600/20 to-orange-600/20 backdrop-blur-sm">
-        <div
-          className="h-full bg-linear-to-r from-purple-500 via-pink-500 to-orange-500 transition-all duration-100 ease-linear shadow-lg"
-          style={{
-            width: isAutoPlaying ? `${((currentSlide + 1) / slides.length) * 100}%` : "0%",
-          }}
-        />
       </div>
     </div>
   );

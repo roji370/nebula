@@ -125,14 +125,11 @@ export default function Home() {
           {loading && (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {[...Array(8)].map((_, index) => (
-                <div
-                  key={index}
-                  className="bg-white dark:bg-card rounded-2xl p-5 shadow-premium animate-pulse"
-                >
-                  <div className="aspect-square bg-linear-to-br from-gray-200 via-gray-100 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 rounded-xl mb-4"></div>
-                  <div className="bg-gray-200 dark:bg-gray-700 h-5 rounded-lg mb-3 w-3/4"></div>
-                  <div className="bg-gray-200 dark:bg-gray-700 h-4 rounded-lg mb-3 w-full"></div>
-                  <div className="bg-gray-200 dark:bg-gray-700 h-10 rounded-xl"></div>
+                <div key={index} className="bg-card rounded-xl p-4 border shadow-sm animate-pulse">
+                  <div className="aspect-square bg-muted rounded-lg mb-4"></div>
+                  <div className="bg-muted h-5 rounded mb-2 w-3/4"></div>
+                  <div className="bg-muted h-4 rounded mb-2 w-1/2"></div>
+                  <div className="bg-muted h-10 rounded"></div>
                 </div>
               ))}
             </div>
@@ -145,7 +142,7 @@ export default function Home() {
                 <div
                   key={product.id}
                   className="animate-fade-in-up"
-                  style={{ animationDelay: `${index * 80}ms` }}
+                  style={{ animationDelay: `${index * 50}ms` }}
                 >
                   <ProductCard product={product} />
                 </div>
@@ -156,13 +153,11 @@ export default function Home() {
           {/* No Products State */}
           {!loading && products.length === 0 && (
             <div className="text-center py-20">
-              <div className="w-24 h-24 bg-linear-to-br from-orange-100 to-pink-100 dark:from-orange-900/30 dark:to-pink-900/30 rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-5xl">📦</span>
+              <div className="w-24 h-24 bg-muted rounded-full flex items-center justify-center mx-auto mb-6">
+                <span className="text-5xl opacity-50">📦</span>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                No Products Available
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400 text-lg">
+              <h3 className="text-2xl font-bold text-foreground mb-3">No Products Available</h3>
+              <p className="text-muted-foreground text-lg">
                 Check back soon for our latest collection!
               </p>
             </div>

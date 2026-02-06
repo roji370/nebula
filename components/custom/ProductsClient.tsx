@@ -134,134 +134,106 @@ export default function ProductsClient() {
   return (
     <div className="min-h-screen">
       {/* Enhanced Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Modern Background */}
-        <div className="absolute inset-0 bg-linear-to-br from-purple-50/80 via-pink-50/60 to-blue-50/80 dark:from-purple-950/20 dark:via-pink-950/10 dark:to-blue-950/20"></div>
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl animate-pulse"></div>
-        <div
-          className="absolute bottom-0 right-1/4 w-72 h-72 bg-pink-300/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
-        ></div>
-
-        <div className="max-w-7xl mx-auto px-4 relative z-10">
-          <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-            <div className="text-center md:text-left">
-              <h1 className="text-4xl md:text-6xl font-black mb-4 bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-                🛍️ All Products
-              </h1>
-              <p className="text-lg text-muted-foreground max-w-2xl font-medium">
-                Explore our complete collection of premium beauty and wellness products
-              </p>
-              <div className="w-24 h-1 bg-linear-to-r from-purple-500 to-pink-500 mx-auto md:mx-0 mt-4 rounded-full"></div>
+      {/* Compact Modern Header */}
+      <div className="max-w-7xl mx-auto px-4 py-8">
+        <div className="flex flex-col gap-6">
+          {/* Top Row: Title & Search & Stats */}
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-bold text-foreground">All Products</h1>
+              <p className="text-sm text-muted-foreground mt-1">Showing {filtered.length} items</p>
             </div>
 
-            <div className="w-full md:w-auto">
-              <div className="relative group">
-                <div className="absolute -inset-0.5 bg-linear-to-r from-purple-600 to-pink-600 rounded-2xl blur opacity-20 group-hover:opacity-40 transition duration-500"></div>
-                <div className="relative">
-                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground z-10" />
-                  <Input
-                    value={query}
-                    onChange={(e) => setQuery(e.target.value)}
-                    placeholder="Search products..."
-                    className="pl-12 pr-4 h-14 w-full md:w-96 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/20 dark:border-zinc-700/50 rounded-2xl text-lg shadow-xl focus:shadow-2xl transition-all duration-300"
-                    aria-label="Search products"
-                  />
-                </div>
+            <div className="flex items-center gap-4 flex-1 md:justify-end">
+              <div className="relative w-full md:w-80">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                  placeholder="Search..."
+                  className="pl-9 h-10 bg-background border-border rounded-lg focus-visible:ring-1 focus-visible:ring-primary"
+                />
               </div>
             </div>
           </div>
 
-          <div className="mt-8 flex items-center gap-4 bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 rounded-2xl px-6 py-4">
-            <SlidersHorizontal className="h-5 w-5 text-muted-foreground" />
-            <span className="text-sm font-medium text-muted-foreground">
-              Showing {filtered.length} premium items
-            </span>
-          </div>
+          {/* Second Row: Categories & Sort - Single Bar */}
+          <Tabs
+            defaultValue="All"
+            value={activeCategory}
+            onValueChange={handleCategoryChange}
+            className="w-full"
+          >
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-border pb-4">
+              <TabsList className="bg-transparent h-auto p-0 flex flex-wrap gap-2 justify-start w-full sm:w-auto overflow-x-auto no-scrollbar">
+                {categories.map((cat) => (
+                  <TabsTrigger
+                    key={cat}
+                    value={cat}
+                    className="rounded-full px-4 py-1.5 h-auto text-sm border border-border data-[state=active]:bg-primary data-[state=active]:text-primary-foreground data-[state=active]:border-primary hover:bg-muted/50 transition-colors"
+                  >
+                    {cat}
+                  </TabsTrigger>
+                ))}
+              </TabsList>
 
-          <div className="mt-8">
-            <Tabs defaultValue="All" value={activeCategory} onValueChange={handleCategoryChange}>
-              <div className="bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 rounded-2xl p-2">
-                <TabsList className="flex flex-wrap gap-2 bg-transparent">
-                  {categories.map((cat) => (
-                    <TabsTrigger
-                      key={cat}
-                      value={cat}
-                      className="px-6 py-3 rounded-xl data-[state=active]:bg-linear-to-r data-[state=active]:from-purple-500 data-[state=active]:to-pink-500 data-[state=active]:text-white font-bold transition-all duration-300"
-                    >
-                      {cat === "All" ? "🔥 All" : cat}
-                    </TabsTrigger>
-                  ))}
-                </TabsList>
+              <div className="flex items-center gap-2 shrink-0">
+                <span className="text-sm text-muted-foreground whitespace-nowrap">Sort by:</span>
+                <select
+                  className="bg-transparent border-none text-sm font-medium text-foreground focus:ring-0 cursor-pointer pr-8"
+                  value={sort}
+                  onChange={(e) => setSort(e.target.value)}
+                >
+                  <option value="popular">Popular</option>
+                  <option value="newest">Newest</option>
+                  <option value="name">Name (A–Z)</option>
+                  <option value="price-asc">Price (Low)</option>
+                  <option value="price-desc">Price (High)</option>
+                </select>
               </div>
+            </div>
 
-              <TabsContent value={activeCategory}>
-                <div className="flex items-center justify-end mt-6">
-                  <div className="bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 rounded-xl px-4 py-2 flex items-center gap-3">
-                    <label className="text-sm font-medium text-muted-foreground">Sort by</label>
-                    <select
-                      className="bg-transparent border-0 text-sm font-medium focus:outline-none cursor-pointer"
-                      value={sort}
-                      onChange={(e) => setSort(e.target.value)}
-                      aria-label="Sort products"
-                    >
-                      <option value="popular">Most Popular</option>
-                      <option value="newest">Newest First</option>
-                      <option value="name">Name (A–Z)</option>
-                      <option value="price-asc">Price (Low to High)</option>
-                      <option value="price-desc">Price (High to Low)</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Loading State */}
-                {loading && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
-                    {[...Array(12)].map((_, index) => (
-                      <div
-                        key={index}
-                        className="bg-white/90 dark:bg-zinc-900/90 rounded-2xl p-6 shadow-xl animate-pulse"
-                      >
-                        <div className="aspect-square bg-gray-200 dark:bg-gray-700 rounded-xl mb-4"></div>
-                        <div className="bg-gray-200 dark:bg-gray-700 h-6 rounded mb-2"></div>
-                        <div className="bg-gray-200 dark:bg-gray-700 h-4 rounded mb-4 w-3/4"></div>
-                        <div className="bg-gray-200 dark:bg-gray-700 h-12 rounded"></div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {/* Products Grid */}
-                {!loading && (
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mt-8">
-                    {filtered.map((p, index) => (
-                      <div
-                        key={p.id}
-                        className="animate-fade-in-up"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <ProductCard product={p} />
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                {!loading && filtered.length === 0 && (
-                  <div className="text-center py-20">
-                    <div className="bg-white/20 dark:bg-black/20 backdrop-blur-md border border-white/30 dark:border-white/10 rounded-2xl p-12 inline-block">
-                      <div className="text-6xl mb-4">🔍</div>
-                      <h3 className="text-xl font-bold text-foreground mb-2">No products found</h3>
-                      <p className="text-muted-foreground">
-                        Try adjusting your search or filter criteria
-                      </p>
-                    </div>
-                  </div>
-                )}
-              </TabsContent>
-            </Tabs>
-          </div>
+            <TabsContent value={activeCategory} className="mt-6 pointer-events-none">
+              {/* Empty placeholder to keep structure valid - content rendered below */}
+            </TabsContent>
+          </Tabs>
         </div>
-      </section>
+
+        {/* Loading State */}
+        {loading && (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            {[...Array(8)].map((_, index) => (
+              <div key={index} className="bg-muted/10 rounded-lg p-4 animate-pulse">
+                <div className="aspect-square bg-muted/20 rounded-md mb-3"></div>
+                <div className="bg-muted/20 h-4 rounded w-3/4 mb-2"></div>
+                <div className="bg-muted/20 h-4 rounded w-1/2"></div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Products Grid */}
+        {!loading && (
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-10 mt-2">
+            {filtered.map((p, index) => (
+              <div
+                key={p.id}
+                className="animate-fade-in-up"
+                style={{ animationDelay: `${index * 50}ms` }}
+              >
+                <ProductCard product={p} />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {!loading && filtered.length === 0 && (
+          <div className="text-center py-20 bg-muted/5 rounded-xl border border-dashed border-border mt-4">
+            <h3 className="text-lg font-medium text-foreground mb-1">No products found</h3>
+            <p className="text-sm text-muted-foreground">Try adjusting your search or filters</p>
+          </div>
+        )}
+      </div>{" "}
     </div>
   );
 }
