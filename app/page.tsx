@@ -55,11 +55,11 @@ export default function Home() {
       </section>
 
       {/* Trust Indicators Section */}
-      <section className="py-12 bg-linear-to-br from-orange-50 via-rose-50 to-pink-50 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900 border-y border-orange-100 dark:border-zinc-800">
+      <section className="py-12 bg-muted border-y border-border">
         <div className="max-w-7xl mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <div className="flex items-center gap-4 p-4 bg-white/80 dark:bg-zinc-800/50 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="shrink-0 w-12 h-12 rounded-full bg-linear-to-br from-purple-500 to-pink-500 flex items-center justify-center">
+              <div className="shrink-0 w-12 h-12 rounded-full bg-primary flex items-center justify-center">
                 <span className="text-2xl">🚚</span>
               </div>
               <div>
@@ -68,7 +68,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-4 p-4 bg-white/80 dark:bg-zinc-800/50 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="shrink-0 w-12 h-12 rounded-full bg-linear-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+              <div className="shrink-0 w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
                 <span className="text-2xl">✓</span>
               </div>
               <div>
@@ -77,7 +77,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-4 p-4 bg-white/80 dark:bg-zinc-800/50 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="shrink-0 w-12 h-12 rounded-full bg-linear-to-br from-orange-500 to-amber-500 flex items-center justify-center">
+              <div className="shrink-0 w-12 h-12 rounded-full bg-orange-500 flex items-center justify-center">
                 <span className="text-2xl">↻</span>
               </div>
               <div>
@@ -86,7 +86,7 @@ export default function Home() {
               </div>
             </div>
             <div className="flex items-center gap-4 p-4 bg-white/80 dark:bg-zinc-800/50 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="shrink-0 w-12 h-12 rounded-full bg-linear-to-br from-blue-500 to-indigo-500 flex items-center justify-center">
+              <div className="shrink-0 w-12 h-12 rounded-full bg-blue-500 flex items-center justify-center">
                 <span className="text-2xl">🔒</span>
               </div>
               <div>
@@ -104,22 +104,22 @@ export default function Home() {
       </section>
 
       {/* Enhanced Our Products Section */}
-      <section className="py-20 relative bg-linear-to-b from-white via-orange-50/30 to-white dark:from-background dark:via-zinc-900/50 dark:to-background">
+      <section className="py-20 relative bg-background">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-16">
             <div className="inline-block mb-4">
-              <span className="text-sm font-bold text-purple-600 dark:text-purple-400 bg-purple-100 dark:bg-purple-900/30 px-4 py-2 rounded-full">
+              <span className="text-sm font-bold text-primary bg-primary/10 px-4 py-2 rounded-full">
                 ✨ HANDPICKED COLLECTION
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-black mb-4 text-gradient-primary">
+            <h1 className="text-4xl md:text-5xl font-black mb-4 text-foreground">
               Our Premium Products
             </h1>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto font-medium leading-relaxed">
               Discover our carefully curated selection of premium quality products designed to
               enhance your lifestyle
             </p>
-            <div className="w-24 h-1 bg-linear-to-r from-purple-500 via-pink-500 to-orange-500 mx-auto mt-6 rounded-full"></div>
+            <div className="w-24 h-1 bg-primary mx-auto mt-6 rounded-full"></div>
           </div>
           {/* Loading State with Premium Design */}
           {loading && (

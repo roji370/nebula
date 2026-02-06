@@ -1,10 +1,18 @@
 import "./globals.css";
 import Script from "next/script";
 import type { Metadata } from "next";
+import { Montserrat } from "next/font/google";
 import Navbar from "@/components/custom/Navbar";
 import Footer from "@/components/custom/Footer";
 import { ProviderWrapper } from "@/components/ProviderWrapper";
 import ClientFloatingButton from "@/components/ClientFloatingButton";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-montserrat",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Nebula E-Commerce - Premium Beauty & Wellness",
@@ -19,23 +27,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="antialiased">
+      <body className={`${montserrat.variable} font-sans antialiased`}>
         <ProviderWrapper>
-          <div className="relative min-h-screen">
-            {/* Modern Background with Gradient Mesh */}
-            <div className="fixed inset-0 bg-linear-to-br from-purple-50/50 via-pink-50/30 to-blue-50/50 dark:from-purple-950/30 dark:via-pink-950/20 dark:to-blue-950/30 -z-10"></div>
-            <div className="fixed top-0 left-1/4 w-96 h-96 bg-purple-400/20 rounded-full blur-3xl animate-pulse -z-10 duration-[4s]"></div>
-            <div
-              className="fixed bottom-0 right-1/4 w-72 h-72 bg-pink-400/20 rounded-full blur-3xl animate-pulse -z-10 duration-[5s]"
-              style={{ animationDelay: "2s" }}
-            ></div>
-            <div
-              className="fixed top-1/3 right-1/3 w-64 h-64 bg-blue-400/20 rounded-full blur-3xl animate-pulse -z-10 duration-[6s]"
-              style={{ animationDelay: "4s" }}
-            ></div>
-
+          <div className="relative min-h-screen bg-background">
             <Navbar />
-            <main className="relative z-10">{children}</main>
+            <main className="relative">{children}</main>
             <Footer />
             <ClientFloatingButton />
           </div>

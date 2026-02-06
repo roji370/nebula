@@ -7,7 +7,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    var(--font-montserrat), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-mono:
     "SF Mono", Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace;
   --color-sidebar-ring: var(--sidebar-ring);
@@ -46,50 +46,85 @@
 }
 
 :root {
-  --radius: 0.875rem;
-  /* Warmer, more inviting light palette */
-  --background: oklch(0.99 0.005 65); /* Warm white with slight peachy undertone */
-  --foreground: oklch(0.15 0.02 280); /* Rich charcoal with slight warmth */
+  --radius: 0.5rem;
+  /* 8px - Mamaearth uses slightly rounded corners */
+
+  /* Mamaearth Color Palette - Clean, Trustworthy, Natural */
+  --background: oklch(1 0 0);
+  /* Pure white #FFFFFF */
+  --foreground: oklch(0.25 0.01 280);
+  /* Dark grey #212121 */
+
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0.02 280);
+  /* White cards */
+  --card-foreground: oklch(0.25 0.01 280);
+
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.15 0.02 280);
-  --primary: oklch(0.55 0.22 280); /* Rich purple with warmth */
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.015 50); /* Soft peachy mist */
-  --secondary-foreground: oklch(0.55 0.22 280);
-  --muted: oklch(0.97 0.008 60);
-  --muted-foreground: oklch(0.5 0.05 280);
-  --accent: oklch(0.96 0.02 40); /* Warm accent */
-  --accent-foreground: oklch(0.55 0.22 280);
+  --popover-foreground: oklch(0.25 0.01 280);
+
+  /* Primary: Mamaearth Cyan Blue #00AEEF */
+  --primary: oklch(0.65 0.15 230);
+  /* Bright cyan blue */
+  --primary-foreground: oklch(1 0 0);
+  /* White text on blue */
+
+  /* Secondary: Light Green for offers/badges #76BD43 */
+  --secondary: oklch(0.7 0.12 140);
+  /* Fresh green */
+  --secondary-foreground: oklch(1 0 0);
+
+  --muted: oklch(0.97 0.005 280);
+  /* Very light grey #F8F8F8 */
+  --muted-foreground: oklch(0.55 0.01 280);
+  /* Medium grey #757575 */
+
+  --accent: oklch(0.97 0.005 280);
+  /* Light grey accent */
+  --accent-foreground: oklch(0.25 0.01 280);
+
   --destructive: oklch(0.55 0.22 25);
-  --border: oklch(0.93 0.01 60);
-  --input: oklch(0.95 0.01 60);
-  --ring: oklch(0.55 0.22 280);
-  --chart-1: oklch(0.65 0.2 280); /* Purple */
-  --chart-2: oklch(0.6 0.18 330); /* Pink */
-  --chart-3: oklch(0.62 0.2 40); /* Orange */
-  --chart-4: oklch(0.7 0.18 140); /* Teal */
-  --chart-5: oklch(0.65 0.19 25); /* Coral */
-  --sidebar: oklch(0.99 0.005 65);
-  --sidebar-foreground: oklch(0.15 0.02 280);
-  --sidebar-primary: oklch(0.55 0.22 280);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.96 0.015 50);
-  --sidebar-accent-foreground: oklch(0.55 0.22 280);
-  --sidebar-border: oklch(0.93 0.01 60);
-  --sidebar-ring: oklch(0.55 0.22 280);
+  /* Red for errors */
+
+  --border: oklch(0.92 0.005 280);
+  /* Light grey borders #E0E0E0 */
+  --input: oklch(0.97 0.005 280);
+  /* Light input backgrounds */
+  --ring: oklch(0.65 0.15 230);
+  /* Cyan blue focus ring */
+
+  --chart-1: oklch(0.65 0.15 230);
+  /* Cyan */
+  --chart-2: oklch(0.7 0.12 140);
+  /* Green */
+  --chart-3: oklch(0.62 0.2 40);
+  /* Orange */
+  --chart-4: oklch(0.7 0.18 160);
+  /* Teal */
+  --chart-5: oklch(0.65 0.19 25);
+  /* Coral */
+
+  --sidebar: oklch(1 0 0);
+  --sidebar-foreground: oklch(0.25 0.01 280);
+  --sidebar-primary: oklch(0.65 0.15 230);
+  --sidebar-primary-foreground: oklch(1 0 0);
+  --sidebar-accent: oklch(0.97 0.005 280);
+  --sidebar-accent-foreground: oklch(0.25 0.01 280);
+  --sidebar-border: oklch(0.92 0.005 280);
+  --sidebar-ring: oklch(0.65 0.15 230);
 }
 
 .dark {
   /* Warmer, more inviting dark palette with better contrast */
-  --background: oklch(0.12 0.025 280); /* Slightly warmer dark with purple hint */
+  --background: oklch(0.12 0.025 280);
+  /* Slightly warmer dark with purple hint */
   --foreground: oklch(0.97 0.005 60);
-  --card: oklch(0.17 0.03 280); /* Elevated card with warmth */
+  --card: oklch(0.17 0.03 280);
+  /* Elevated card with warmth */
   --card-foreground: oklch(0.97 0.005 60);
   --popover: oklch(0.17 0.03 280);
   --popover-foreground: oklch(0.97 0.005 60);
-  --primary: oklch(0.68 0.2 285); /* Brighter purple with good contrast */
+  --primary: oklch(0.68 0.2 285);
+  /* Brighter purple with good contrast */
   --primary-foreground: oklch(0.12 0.025 280);
   --secondary: oklch(0.22 0.04 290);
   --secondary-foreground: oklch(0.97 0.005 60);
@@ -101,11 +136,16 @@
   --border: oklch(0.28 0.04 280);
   --input: oklch(0.26 0.04 280);
   --ring: oklch(0.68 0.2 285);
-  --chart-1: oklch(0.68 0.2 285); /* Purple */
-  --chart-2: oklch(0.65 0.2 330); /* Pink */
-  --chart-3: oklch(0.67 0.19 40); /* Orange */
-  --chart-4: oklch(0.7 0.18 160); /* Teal */
-  --chart-5: oklch(0.68 0.19 25); /* Coral */
+  --chart-1: oklch(0.68 0.2 285);
+  /* Purple */
+  --chart-2: oklch(0.65 0.2 330);
+  /* Pink */
+  --chart-3: oklch(0.67 0.19 40);
+  /* Orange */
+  --chart-4: oklch(0.7 0.18 160);
+  /* Teal */
+  --chart-5: oklch(0.68 0.19 25);
+  /* Coral */
   --sidebar: oklch(0.12 0.025 280);
   --sidebar-foreground: oklch(0.97 0.005 60);
   --sidebar-primary: oklch(0.68 0.2 285);
@@ -120,12 +160,14 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings:
       "rlig" 1,
       "calt" 1;
   }
+
   h1,
   h2,
   h3,
@@ -134,27 +176,33 @@
   h6 {
     @apply font-bold tracking-tight;
   }
+
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl;
   }
+
   h2 {
     @apply text-3xl md:text-4xl lg:text-5xl;
   }
+
   h3 {
     @apply text-2xl md:text-3xl;
   }
+
   p {
     @apply leading-relaxed;
   }
 }
 
 @layer utilities {
+
   /* Custom animations for the enhanced components */
   @keyframes fade-in-up {
     0% {
       opacity: 0;
       transform: translateY(20px);
     }
+
     100% {
       opacity: 1;
       transform: translateY(0);
@@ -165,36 +213,43 @@
     0% {
       transform: translateX(-100%);
     }
+
     100% {
       transform: translateX(100%);
     }
   }
 
   @keyframes float {
+
     0%,
     100% {
       transform: translateY(0px);
     }
+
     50% {
       transform: translateY(-10px);
     }
   }
 
   @keyframes glow {
+
     0%,
     100% {
       opacity: 0.4;
     }
+
     50% {
       opacity: 0.8;
     }
   }
 
   @keyframes pulse-slow {
+
     0%,
     100% {
       opacity: 1;
     }
+
     50% {
       opacity: 0.5;
     }
@@ -205,6 +260,7 @@
       opacity: 0;
       transform: scale(0.95);
     }
+
     100% {
       opacity: 1;
       transform: scale(1);

@@ -31,57 +31,57 @@ export default function Navbar() {
 
   const NavbarData = user
     ? [
-        {
-          label: "Home",
-          href: "/",
-        },
-        {
-          label: "About",
-          href: "/about",
-        },
-        {
-          label: "Products",
-          href: "/products",
-        },
-        {
-          label: "My Orders",
-          href: "/my-orders",
-        },
-        {
-          label: "Locate Store",
-          href: "/locate-store",
-        },
-        ...(isSeller
-          ? [
-              {
-                label: "Seller Dashboard",
-                href: "/seller",
-              },
-            ]
-          : []),
-      ]
+      {
+        label: "Home",
+        href: "/",
+      },
+      {
+        label: "About",
+        href: "/about",
+      },
+      {
+        label: "Products",
+        href: "/products",
+      },
+      {
+        label: "My Orders",
+        href: "/my-orders",
+      },
+      {
+        label: "Locate Store",
+        href: "/locate-store",
+      },
+      ...(isSeller
+        ? [
+          {
+            label: "Seller Dashboard",
+            href: "/seller",
+          },
+        ]
+        : []),
+    ]
     : [
-        {
-          label: "Home",
-          href: "/",
-        },
-        {
-          label: "About",
-          href: "/about",
-        },
-        {
-          label: "Products",
-          href: "/products",
-        },
-        {
-          label: "Locate Store",
-          href: "/locate-store",
-        },
-        {
-          label: "Contact",
-          href: "/contact",
-        },
-      ];
+      {
+        label: "Home",
+        href: "/",
+      },
+      {
+        label: "About",
+        href: "/about",
+      },
+      {
+        label: "Products",
+        href: "/products",
+      },
+      {
+        label: "Locate Store",
+        href: "/locate-store",
+      },
+      {
+        label: "Contact",
+        href: "/contact",
+      },
+    ];
 
   // use the shared category palette for subtle gradients in the navbar
   const palette = getPalette(0); // using the first palette (violet-pink-blue)
@@ -91,7 +91,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-white/80 dark:bg-background/80 backdrop-blur-xl supports-backdrop-filter:bg-white/60 dark:supports-backdrop-filter:bg-background/60 transition-all duration-300 shadow-sm">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-white dark:bg-background backdrop-blur-xl transition-all duration-300 shadow-sm">
       <div className="mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           <div className="grid grid-cols-3 items-center w-full">
@@ -102,15 +102,14 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-full group ${
-                      pathname === item.href
-                        ? "text-foreground bg-linear-to-r from-purple-100 via-pink-100 to-orange-100 dark:from-purple-900/40 dark:via-pink-900/40 dark:to-orange-900/40"
-                        : "text-muted-foreground hover:text-foreground hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30"
-                    }`}
+                    className={`relative px-4 py-2 text-sm font-semibold transition-all duration-300 rounded-lg group ${pathname === item.href
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
                   >
                     {item.label}
                     {pathname === item.href && (
-                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-linear-to-r from-purple-500 via-pink-500 to-orange-500 rounded-full"></div>
+                      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1/2 h-0.5 bg-primary rounded-full"></div>
                     )}
                   </Link>
                 ))}
@@ -118,7 +117,7 @@ export default function Navbar() {
               <Button
                 variant="ghost"
                 size="icon"
-                className="xl:hidden ml-2 h-10 w-10 hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 rounded-full transition-colors"
+                className="xl:hidden ml-2 h-10 w-10 hover:bg-muted rounded-lg transition-colors"
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
               >
                 {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -128,9 +127,7 @@ export default function Navbar() {
             {/* Center section - Logo */}
             <div className="flex items-center justify-center">
               <Link href="/" className="flex items-center gap-2 shrink-0 group">
-                <div
-                  className={`rounded-full p-0.5 bg-linear-to-r ${palette.gradient} transition-transform duration-300 group-hover:scale-105 shadow-md`}
-                >
+                <div className="rounded-full p-0.5 bg-primary transition-transform duration-300 group-hover:scale-105 shadow-md">
                   <Image
                     src="/Nebula.png"
                     alt="Nebula Logo"
@@ -141,7 +138,7 @@ export default function Navbar() {
                     unoptimized
                   />
                 </div>
-                <span className="hidden md:block font-black text-xl tracking-tight bg-linear-to-r from-purple-600 via-pink-600 to-orange-500 bg-clip-text text-transparent">
+                <span className="hidden md:block font-black text-xl tracking-tight text-foreground">
                   Nebula
                 </span>
               </Link>
@@ -160,7 +157,7 @@ export default function Navbar() {
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
-                  className={`hidden md:inline-flex h-10 w-10 hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 rounded-full transition-all duration-300 ${isSearchOpen ? "bg-linear-to-r from-purple-100 via-pink-100 to-orange-100 dark:from-purple-900/40 dark:via-pink-900/40 dark:to-orange-900/40" : ""}`}
+                  className={`hidden md:inline-flex h-10 w-10 hover:bg-muted rounded-lg transition-all duration-300 ${isSearchOpen ? "bg-primary/10 text-primary" : ""}`}
                 >
                   {isSearchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
                 </Button>
@@ -169,13 +166,13 @@ export default function Navbar() {
                   variant="ghost"
                   size="icon"
                   onClick={() => router.push("/cart")}
-                  className="hidden md:inline-flex relative h-10 w-10 hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 rounded-full transition-all duration-300"
+                  className="hidden md:inline-flex relative h-10 w-10 hover:bg-muted rounded-lg transition-all duration-300"
                 >
                   <CartIcon />
                 </Button>
 
                 {user ? (
-                  <div className="relative h-10 w-10 hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 flex items-center justify-center rounded-full transition-all duration-300">
+                  <div className="relative h-10 w-10 hover:bg-muted flex items-center justify-center rounded-lg transition-all duration-300">
                     <UserButton>
                       <UserButton.MenuItems>
                         <UserButton.Action
@@ -213,7 +210,7 @@ export default function Navbar() {
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="relative h-10 w-10 hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 flex items-center justify-center rounded-full transition-all duration-300"
+                    className="relative h-10 w-10 hover:bg-muted flex items-center justify-center rounded-lg transition-all duration-300"
                     onClick={() => openSignIn()}
                   >
                     <User className="h-5 w-5" />
@@ -229,12 +226,12 @@ export default function Navbar() {
         </div>
 
         {isMenuOpen && (
-          <div className="xl:hidden border-t border-border/40 bg-white/95 dark:bg-background/95 backdrop-blur-xl animate-in slide-in-from-top-5 fade-in duration-300 absolute w-full left-0 z-40 shadow-xl">
+          <div className="xl:hidden border-t border-border bg-white dark:bg-background backdrop-blur-xl animate-in slide-in-from-top-5 fade-in duration-300 absolute w-full left-0 z-40 shadow-xl">
             <div className="px-4 py-6 space-y-6">
               {/* Mobile Search Section */}
               <NavbarSearch isMobile onClose={handleCloseMenu} />
 
-              <div className="flex items-center justify-between gap-3 pb-4 border-b border-border/50 md:hidden">
+              <div className="flex items-center justify-between gap-3 pb-4 border-b border-border md:hidden">
                 <div className="flex items-center gap-3">
                   <Button
                     variant="ghost"
@@ -243,7 +240,7 @@ export default function Navbar() {
                       router.push("/cart");
                       setIsMenuOpen(false);
                     }}
-                    className="relative h-12 w-12 hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 rounded-xl"
+                    className="relative h-12 w-12 hover:bg-muted rounded-xl"
                   >
                     <CartIcon />
                   </Button>
@@ -263,11 +260,10 @@ export default function Navbar() {
                   <Link
                     key={item.href}
                     href={item.href}
-                    className={`flex items-center px-4 py-3 text-base font-semibold rounded-xl transition-all duration-200 active:scale-95 ${
-                      pathname === item.href
-                        ? "text-foreground bg-linear-to-r from-purple-100 via-pink-100 to-orange-100 dark:from-purple-900/40 dark:via-pink-900/40 dark:to-orange-900/40"
-                        : "text-muted-foreground hover:text-foreground hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30"
-                    }`}
+                    className={`flex items-center px-4 py-3 text-base font-semibold rounded-xl transition-all duration-200 active:scale-95 ${pathname === item.href
+                      ? "text-primary bg-primary/10"
+                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
+                      }`}
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
@@ -277,13 +273,13 @@ export default function Navbar() {
 
               {/* Quick Actions for logged-in users */}
               {user && (
-                <div className="space-y-2 pt-4 border-t border-border/50">
+                <div className="space-y-2 pt-4 border-t border-border">
                   <h3 className="text-xs font-bold text-muted-foreground uppercase tracking-wider px-4 mb-3">
                     Quick Actions
                   </h3>
                   <Link
                     href="/account"
-                    className="flex items-center px-4 py-3 text-base font-semibold text-muted-foreground hover:text-foreground hover:bg-linear-to-r hover:from-purple-50 hover:via-pink-50 hover:to-orange-50 dark:hover:from-purple-950/30 dark:hover:via-pink-950/30 dark:hover:to-orange-950/30 rounded-xl transition-all duration-200 active:scale-95"
+                    className="flex items-center px-4 py-3 text-base font-semibold text-muted-foreground hover:text-foreground hover:bg-muted rounded-xl transition-all duration-200 active:scale-95"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     My Account
