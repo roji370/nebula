@@ -167,7 +167,7 @@ export default function Navbar() {
                   variant="ghost"
                   size="icon"
                   onClick={() => router.push("/cart")}
-                  className="hidden md:inline-flex relative h-10 w-10 hover:bg-muted rounded-lg transition-all duration-300"
+                  className="inline-flex relative h-10 w-10 hover:bg-muted rounded-lg transition-all duration-300"
                 >
                   <CartIcon />
                 </Button>
