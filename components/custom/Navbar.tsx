@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { useClerk, UserButton } from "@clerk/nextjs";
 import { useAppContext } from "@/contexts/AppContext";
@@ -20,6 +20,8 @@ export default function Navbar() {
   const { isSeller, user } = useAppContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const searchRef = useRef<HTMLDivElement>(null);
+  const searchToggleRef = useRef<HTMLButtonElement>(null);
 
   const handleCloseSearch = useCallback(() => {
     setIsSearchOpen(false);
@@ -28,6 +30,33 @@ export default function Navbar() {
   const handleCloseMenu = useCallback(() => {
     setIsMenuOpen(false);
   }, []);
+
+  // Close search when pathname changes
+  useEffect(() => {
+    setIsSearchOpen(false);
+  }, [pathname]);
+
+  // Close search when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as Node;
+      const clickedOutsideSearch = searchRef.current && !searchRef.current.contains(target);
+      const clickedOutsideToggle =
+        searchToggleRef.current && !searchToggleRef.current.contains(target);
+
+      if (clickedOutsideSearch && clickedOutsideToggle) {
+        setIsSearchOpen(false);
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSearchOpen]);
 
   const NavbarData = user
     ? [
@@ -87,11 +116,14 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-white dark:bg-background backdrop-blur-xl transition-all duration-300 shadow-sm">
-      <div className="mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          <div className="grid grid-cols-3 items-center w-full">
-            {/* Left section - Navigation */}
+    <>
+      {/* Top Navbar */}
+      <div
+        className={`sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 transition-all duration-300 ${isSearchOpen ? "pb-20" : ""}`}
+      >
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="grid grid-cols-3 items-center h-16 gap-4">
+            {/* Left section - Menu Button */}
             <div className="flex items-center justify-start">
               <div className="hidden xl:flex items-center gap-1">
                 {NavbarData.map((item) => (
@@ -143,9 +175,12 @@ export default function Navbar() {
 
             {/* Right section - Search and Actions */}
             <div className="flex items-center justify-end gap-3">
-              {/* Expandable search on mobile, always visible on desktop */}
+              {/* Expandable search on mobile with improved styling */}
               {isSearchOpen && (
-                <div className="md:hidden absolute left-4 right-4 top-full mt-2 z-50 animate-in slide-in-from-top-2 fade-in duration-200">
+                <div
+                  ref={searchRef}
+                  className="md:hidden absolute left-4 right-4 top-16 z-50 animate-in slide-in-from-top-2 fade-in duration-200"
+                >
                   <NavbarSearch onClose={handleCloseSearch} isMobile />
                 </div>
               )}
@@ -157,6 +192,7 @@ export default function Navbar() {
               <div className="flex items-center gap-1">
                 {/* Mobile search toggle button */}
                 <Button
+                  ref={searchToggleRef}
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
@@ -284,6 +320,6 @@ export default function Navbar() {
           </div>
         )}
       </div>
-    </nav>
+    </>
   );
 }
