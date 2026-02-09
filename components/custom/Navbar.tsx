@@ -36,20 +36,20 @@ export default function Navbar() {
           href: "/",
         },
         {
-          label: "About",
-          href: "/about",
-        },
-        {
-          label: "Products",
-          href: "/products",
+          label: "Shop",
+          href: "/shop",
         },
         {
           label: "My Orders",
           href: "/my-orders",
         },
         {
-          label: "Locate Store",
-          href: "/locate-store",
+          label: "Contact",
+          href: "/contact",
+        },
+        {
+          label: "About",
+          href: "/about",
         },
         ...(isSeller
           ? [
@@ -66,20 +66,16 @@ export default function Navbar() {
           href: "/",
         },
         {
-          label: "About",
-          href: "/about",
-        },
-        {
-          label: "Products",
-          href: "/products",
-        },
-        {
-          label: "Locate Store",
-          href: "/locate-store",
+          label: "Shop",
+          href: "/shop",
         },
         {
           label: "Contact",
           href: "/contact",
+        },
+        {
+          label: "About",
+          href: "/about",
         },
       ];
 
@@ -147,18 +143,24 @@ export default function Navbar() {
 
             {/* Right section - Search and Actions */}
             <div className="flex items-center justify-end gap-3">
+              {/* Expandable search on mobile, always visible on desktop */}
               {isSearchOpen && (
-                <div className="hidden md:flex relative animate-in slide-in-from-right-4 fade-in duration-300">
-                  <NavbarSearch onClose={handleCloseSearch} />
+                <div className="md:hidden absolute left-4 right-4 top-full mt-2 z-50 animate-in slide-in-from-top-2 fade-in duration-200">
+                  <NavbarSearch onClose={handleCloseSearch} isMobile />
                 </div>
               )}
 
+              <div className="hidden md:flex relative">
+                <NavbarSearch onClose={handleCloseSearch} />
+              </div>
+
               <div className="flex items-center gap-1">
+                {/* Mobile search toggle button */}
                 <Button
                   variant="ghost"
                   size="icon"
                   onClick={() => setIsSearchOpen(!isSearchOpen)}
-                  className={`hidden md:inline-flex h-10 w-10 hover:bg-muted rounded-lg transition-all duration-300 ${isSearchOpen ? "bg-primary/10 text-primary" : ""}`}
+                  className="md:hidden h-10 w-10 hover:bg-muted rounded-lg transition-all duration-300"
                 >
                   {isSearchOpen ? <X className="h-5 w-5" /> : <Search className="h-5 w-5" />}
                 </Button>
@@ -229,24 +231,7 @@ export default function Navbar() {
         {isMenuOpen && (
           <div className="xl:hidden border-t border-border bg-white dark:bg-background backdrop-blur-xl animate-in slide-in-from-top-5 fade-in duration-300 absolute w-full left-0 z-40 shadow-xl">
             <div className="px-4 py-6 space-y-6">
-              {/* Mobile Search Section */}
-              <NavbarSearch isMobile onClose={handleCloseMenu} />
-
-              <div className="flex items-center justify-between gap-3 pb-4 border-b border-border md:hidden">
-                <div className="flex items-center gap-3">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    onClick={() => {
-                      router.push("/cart");
-                      setIsMenuOpen(false);
-                    }}
-                    className="relative h-12 w-12 hover:bg-muted rounded-xl"
-                  >
-                    <CartIcon />
-                  </Button>
-                </div>
-
+              <div className="flex items-center justify-end gap-3 pb-4 border-b border-border md:hidden">
                 <div className="flex items-center justify-center h-12 w-12">
                   <ModeToggle />
                 </div>

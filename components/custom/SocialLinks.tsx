@@ -39,7 +39,7 @@ export default function SocialLinks({ variant = "footer", className = "" }: Soci
 
   const baseClasses =
     variant === "footer"
-      ? "bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:scale-110"
+      ? "bg-primary/10 backdrop-blur-sm border border-primary/20 text-foreground hover:bg-primary/20 hover:text-primary hover:scale-110"
       : "bg-white dark:bg-zinc-900 border border-gray-200 dark:border-zinc-700 text-gray-700 dark:text-gray-300 hover:scale-110 hover:shadow-lg";
 
   return (

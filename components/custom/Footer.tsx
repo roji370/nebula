@@ -29,7 +29,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-foreground mb-4">Products</h4>
+            <h4 className="font-bold text-foreground mb-4">Shop</h4>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
                 <Link href="/products" className="hover:text-primary transition-colors">
@@ -65,11 +65,6 @@ export default function Footer() {
                   Contact Us
                 </Link>
               </li>
-              <li>
-                <Link href="/locate-store" className="hover:text-primary transition-colors">
-                  Locate Store
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -94,13 +89,19 @@ export default function Footer() {
 
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted-foreground">
-          <p>© 2025 Nebula E-Commerce. All rights reserved.</p>
-          <div className="flex gap-6">
+          <p>© 2026 NIKANTHA. All rights reserved.</p>
+          <div className="flex flex-wrap gap-4 md:gap-6 justify-center">
             <Link href="/legal#privacy" className="hover:text-primary">
               Privacy Policy
             </Link>
             <Link href="/legal#terms" className="hover:text-primary">
               Terms of Service
+            </Link>
+            <Link href="/legal#refund" className="hover:text-primary">
+              Refund Policy
+            </Link>
+            <Link href="/legal#shipping" className="hover:text-primary">
+              Shipping Policy
             </Link>
           </div>
         </div>

@@ -3,10 +3,24 @@
 import { Button } from "@/components/ui/button";
 import SocialLinks from "@/components/custom/SocialLinks";
 import { generateWhatsAppMessage, generateWhatsAppUrl } from "@/lib/whatsappMessages";
-import { Mail, MessageSquare, Phone, MapPin, Clock, MessageCircle } from "lucide-react";
+import { Mail, MessageSquare, Phone, MapPin, Clock, MessageCircle, Navigation } from "lucide-react";
 
 export default function ContactUs() {
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+
+  // Store details from environment variables
+  const storeCity = process.env.NEXT_PUBLIC_STORE_CITY || "Kerala";
+  const storeState = process.env.NEXT_PUBLIC_STORE_STATE || "Kerala";
+  const storeZipCode = process.env.NEXT_PUBLIC_STORE_ZIP || "695001";
+  const storePhone = process.env.NEXT_PUBLIC_STORE_PHONE || "+91 98765 43210";
+  const storeEmail = process.env.NEXT_PUBLIC_STORE_EMAIL || "store@nebula.com";
+  const storeAddress = process.env.NEXT_PUBLIC_STORE_ADDRESS || "Kerala, India";
+
+  // Factory hours
+  const factoryHours = [
+    { day: "Monday - Saturday", hours: "9:00 AM - 5:00 PM" },
+    { day: "Sunday", hours: "Closed" },
+  ];
 
   const handleWhatsAppClick = () => {
     const message = generateWhatsAppMessage({ pathname: "/contact" });
@@ -14,36 +28,12 @@ export default function ContactUs() {
     window.open(whatsappUrl, "_blank", "noopener,noreferrer");
   };
 
-  const contactInfo = [
-    {
-      icon: <Mail className="w-6 h-6" />,
-      title: "Email Us",
-      content: "support@nebula.com",
-      description: "Send us an email anytime",
-      gradient: "from-blue-500 to-indigo-500",
-    },
-    {
-      icon: <Phone className="w-6 h-6" />,
-      title: "Call Us",
-      content: "+91 98765 43210",
-      description: "Mon-Fri from 8am to 5pm",
-      gradient: "from-green-500 to-emerald-500",
-    },
-    {
-      icon: <MapPin className="w-6 h-6" />,
-      title: "Visit Us",
-      content: "Kerala, India",
-      description: "Come say hello",
-      gradient: "from-purple-500 to-pink-500",
-    },
-    {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Response Time",
-      content: "1-2 Business Days",
-      description: "We're here to help",
-      gradient: "from-orange-500 to-red-500",
-    },
-  ];
+  const handleGetDirections = () => {
+    const query = encodeURIComponent(
+      `${storeAddress}, ${storeCity}, ${storeState} ${storeZipCode}`
+    );
+    window.open(`https://www.google.com/maps/search/?api=1&query=${query}`, "_blank");
+  };
 
   return (
     <div className="min-h-screen relative overflow-hidden">
@@ -58,7 +48,7 @@ export default function ContactUs() {
       <div className="relative z-10">
         {/* Hero Section */}
         <section className="py-20">
-          <div className="max-w-6xl mx-auto px-4">
+          <div className="max-w-7xl mx-auto px-4">
             <div className="text-center mb-16">
               <div className="relative inline-flex items-center justify-center w-20 h-20 mb-6">
                 <div className="absolute -inset-2 bg-linear-to-r from-blue-500/20 to-purple-500/20 rounded-full blur-xl animate-pulse"></div>
@@ -67,162 +57,203 @@ export default function ContactUs() {
                 </div>
               </div>
               <h1 className="text-4xl md:text-6xl font-black mb-6 bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent">
-                💬 Let's Connect
+                💬 Get in Touch
               </h1>
               <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed font-medium">
-                We're here to help! Chat with us on WhatsApp for instant support and personalized
-                assistance.
+                We're here to help! Reach out via WhatsApp, visit our factory, or connect with us on
+                social media.
               </p>
               <div className="w-24 h-1 bg-linear-to-r from-purple-500 to-pink-500 mx-auto mt-6 rounded-full"></div>
             </div>
 
-            {/* Contact Info Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-              {contactInfo.map((info, index) => (
-                <div
-                  key={index}
-                  className="group relative overflow-hidden"
-                  style={{ animationDelay: `${index * 100}ms` }}
-                >
-                  {/* Glow Effect */}
-                  <div
-                    className={`absolute -inset-0.5 bg-linear-to-r ${info.gradient} rounded-2xl blur opacity-0 group-hover:opacity-30 transition-all duration-500`}
-                  ></div>
+            {/* Main Content Section */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-16">
+              {/* Left Side - Social Media & WhatsApp */}
+              <div className="space-y-6">
+                {/* Social Media Section */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-linear-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl blur opacity-20"></div>
+                  <div className="relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-white/30 dark:border-zinc-700/50">
+                    <div className="text-center">
+                      <h3 className="text-xl font-bold mb-3 bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Connect With Us
+                      </h3>
+                      <p className="text-muted-foreground text-sm mb-4">
+                        Follow us on social media for the latest updates, offers, and beauty tips
+                      </p>
+                      <div className="flex justify-center">
+                        <SocialLinks variant="contact" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
 
-                  {/* Main Card */}
-                  <div className="relative bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl rounded-2xl p-6 text-center shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 border border-white/30 dark:border-zinc-700/50 group-hover:bg-white/90 dark:group-hover:bg-zinc-900/90">
-                    {/* Shine Effect */}
-                    <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-out rounded-2xl"></div>
-
-                    <div className="relative z-10">
-                      <div className="relative inline-flex items-center justify-center w-16 h-16 mb-4">
-                        <div
-                          className={`absolute -inset-2 bg-linear-to-r ${info.gradient} rounded-2xl blur opacity-20 group-hover:opacity-40 transition-opacity duration-500`}
-                        ></div>
-                        <div
-                          className={`relative bg-linear-to-r ${info.gradient} rounded-2xl p-4 text-white shadow-lg`}
-                        >
-                          {info.icon}
+                {/* WhatsApp Section */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-linear-to-r from-[#25D366] via-[#128C7E] to-[#075E54] rounded-2xl blur opacity-30 animate-pulse"></div>
+                  <div className="relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 shadow-2xl border border-white/30 dark:border-zinc-700/50">
+                    <div className="text-center space-y-4">
+                      {/* WhatsApp Icon */}
+                      <div className="relative inline-flex items-center justify-center">
+                        <div className="absolute -inset-3 bg-[#25D366]/20 rounded-full blur-xl animate-pulse"></div>
+                        <div className="relative bg-[#25D366] rounded-full p-4 shadow-2xl">
+                          <MessageCircle size={40} fill="white" className="text-white" />
                         </div>
                       </div>
-                      <h3 className="font-bold text-lg mb-2 group-hover:bg-linear-to-r group-hover:from-purple-600 group-hover:to-pink-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
-                        {info.title}
-                      </h3>
-                      <p className="font-semibold text-foreground mb-1">{info.content}</p>
-                      <p className="text-sm text-muted-foreground">{info.description}</p>
+
+                      <div>
+                        <h2 className="text-xl font-black mb-2 bg-linear-to-r from-[#25D366] to-[#128C7E] bg-clip-text text-transparent">
+                          Chat with Us on WhatsApp
+                        </h2>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          Get instant responses to your queries! Our team is ready to assist you
+                          with product recommendations, order tracking, and any questions you may
+                          have.
+                        </p>
+                      </div>
+
+                      {/* Benefits */}
+                      <div className="grid grid-cols-3 gap-2">
+                        <div className="bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-lg p-2">
+                          <div className="text-lg mb-1">⚡</div>
+                          <h4 className="font-semibold text-[10px] mb-0.5">Instant Replies</h4>
+                          <p className="text-[9px] text-muted-foreground">No waiting</p>
+                        </div>
+                        <div className="bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-lg p-2">
+                          <div className="text-lg mb-1">🛍️</div>
+                          <h4 className="font-semibold text-[10px] mb-0.5">Product Help</h4>
+                          <p className="text-[9px] text-muted-foreground">Expert advice</p>
+                        </div>
+                        <div className="bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-lg p-2">
+                          <div className="text-lg mb-1">📦</div>
+                          <h4 className="font-semibold text-[10px] mb-0.5">Order Support</h4>
+                          <p className="text-[9px] text-muted-foreground">Track orders</p>
+                        </div>
+                      </div>
+
+                      {/* CTA Button */}
+                      <Button
+                        onClick={handleWhatsAppClick}
+                        disabled={!whatsappNumber}
+                        className="w-full bg-[#25D366] hover:bg-[#128C7E] text-white border-0 rounded-xl px-5 py-5 font-bold text-base shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group"
+                      >
+                        <div className="flex items-center justify-center gap-2">
+                          <MessageCircle size={20} fill="white" />
+                          <span>Start WhatsApp Chat</span>
+                        </div>
+                      </Button>
+
+                      {!whatsappNumber && (
+                        <p className="text-xs text-red-500 dark:text-red-400">
+                          WhatsApp number not configured
+                        </p>
+                      )}
                     </div>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Social Media Section */}
-            <div className="text-center mb-16">
-              <div className="max-w-2xl mx-auto">
-                <h3 className="text-2xl font-bold mb-4 bg-linear-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                  Connect With Us
-                </h3>
-                <p className="text-muted-foreground mb-6">
-                  Follow us on social media for the latest updates, offers, and beauty tips
-                </p>
-                <div className="flex justify-center">
-                  <SocialLinks variant="contact" />
                 </div>
               </div>
-            </div>
 
-            {/* WhatsApp CTA Section */}
-            <div className="max-w-3xl mx-auto">
-              <div className="relative">
-                {/* Glow Effect */}
-                <div className="absolute -inset-1 bg-linear-to-r from-[#25D366] via-[#128C7E] to-[#075E54] rounded-3xl blur opacity-30 animate-pulse"></div>
-
-                {/* Main CTA Card */}
-                <div className="relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/30 dark:border-zinc-700/50">
-                  {/* Shine Effect */}
-                  <div className="absolute inset-0 bg-linear-to-r from-transparent via-white/10 to-transparent rounded-3xl opacity-50"></div>
-
-                  <div className="relative z-10 text-center space-y-6">
-                    {/* WhatsApp Icon */}
-                    <div className="relative inline-flex items-center justify-center">
-                      <div className="absolute -inset-4 bg-[#25D366]/20 rounded-full blur-2xl animate-pulse"></div>
-                      <div className="relative bg-[#25D366] rounded-full p-8 shadow-2xl">
-                        <MessageCircle size={64} fill="white" className="text-white" />
+              {/* Right Side - Factory Info */}
+              <div className="space-y-6">
+                {/* Address Card */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-linear-to-r from-purple-500 to-pink-500 rounded-2xl blur opacity-20"></div>
+                  <div className="relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30 dark:border-zinc-700/50">
+                    <div className="flex items-start gap-4">
+                      <div className="shrink-0">
+                        <div className="bg-linear-to-br from-purple-500 to-pink-500 rounded-xl p-3 shadow-lg">
+                          <MapPin className="w-6 h-6 text-white" />
+                        </div>
                       </div>
-                    </div>
-
-                    <div>
-                      <h2 className="text-2xl md:text-3xl font-black mb-3 bg-linear-to-r from-[#25D366] to-[#128C7E] bg-clip-text text-transparent">
-                        Chat with Us on WhatsApp
-                      </h2>
-                      <p className="text-muted-foreground text-lg max-w-2xl mx-auto leading-relaxed">
-                        Get instant responses to your queries! Our team is ready to assist you with
-                        product recommendations, order tracking, and any questions you may have.
-                      </p>
-                    </div>
-
-                    {/* Benefits */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 py-6">
-                      <div className="bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4">
-                        <div className="text-2xl mb-2">⚡</div>
-                        <h4 className="font-semibold text-sm mb-1">Instant Replies</h4>
-                        <p className="text-xs text-muted-foreground">
-                          No waiting, get answers right away
+                      <div className="flex-1">
+                        <h3 className="font-bold text-lg mb-2 text-foreground">Our Address</h3>
+                        <p className="text-muted-foreground text-sm leading-relaxed">
+                          {storeAddress}
+                          <br />
+                          {storeCity}, {storeState} {storeZipCode}
                         </p>
                       </div>
-                      <div className="bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4">
-                        <div className="text-2xl mb-2">🛍️</div>
-                        <h4 className="font-semibold text-sm mb-1">Product Help</h4>
-                        <p className="text-xs text-muted-foreground">
-                          Expert advice on our products
-                        </p>
-                      </div>
-                      <div className="bg-white/50 dark:bg-zinc-800/50 backdrop-blur-sm rounded-xl p-4">
-                        <div className="text-2xl mb-2">📦</div>
-                        <h4 className="font-semibold text-sm mb-1">Order Support</h4>
-                        <p className="text-xs text-muted-foreground">
-                          Track and manage your orders
-                        </p>
-                      </div>
-                    </div>
-
-                    {/* CTA Button */}
-                    <Button
-                      onClick={handleWhatsAppClick}
-                      disabled={!whatsappNumber}
-                      className="bg-[#25D366] hover:bg-[#128C7E] text-white border-0 rounded-xl px-8 py-6 font-bold text-lg shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group"
-                    >
-                      <div className="flex items-center gap-3">
-                        <MessageCircle size={24} fill="white" />
-                        <span>Start WhatsApp Chat</span>
-                      </div>
-                    </Button>
-
-                    {!whatsappNumber && (
-                      <p className="text-sm text-red-500 dark:text-red-400">
-                        WhatsApp number not configured. Please add NEXT_PUBLIC_WHATSAPP_NUMBER to
-                        .env.local
-                      </p>
-                    )}
-
-                    {/* Alternative Contact Info */}
-                    <div className="pt-6 border-t border-white/20 dark:border-zinc-700/50">
-                      <p className="text-sm text-muted-foreground mb-3">
-                        Prefer email? Reach us at{" "}
-                        <a
-                          href="mailto:support@nebula.com"
-                          className="text-purple-600 dark:text-purple-400 hover:underline font-semibold"
-                        >
-                          support@nebula.com
-                        </a>
-                      </p>
-                      <p className="text-xs text-muted-foreground">
-                        <Clock className="w-3 h-3 inline mr-1" />
-                        Email response time: 1-2 business days
-                      </p>
                     </div>
                   </div>
                 </div>
+
+                {/* Contact Info Card */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-linear-to-r from-blue-500 to-cyan-500 rounded-2xl blur opacity-20"></div>
+                  <div className="relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30 dark:border-zinc-700/50">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-4">
+                        <div className="bg-linear-to-br from-blue-500 to-cyan-500 rounded-xl p-3 shadow-lg">
+                          <Phone className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-sm text-foreground">Phone</h4>
+                          <a
+                            href={`tel:${storePhone}`}
+                            className="text-blue-600 dark:text-blue-400 hover:underline"
+                          >
+                            {storePhone}
+                          </a>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-4">
+                        <div className="bg-linear-to-br from-orange-500 to-red-500 rounded-xl p-3 shadow-lg">
+                          <Mail className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="font-semibold text-sm text-foreground">Email</h4>
+                          <a
+                            href={`mailto:${storeEmail}`}
+                            className="text-orange-600 dark:text-orange-400 hover:underline"
+                          >
+                            {storeEmail}
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Factory Hours Card */}
+                <div className="relative">
+                  <div className="absolute -inset-1 bg-linear-to-r from-green-500 to-emerald-500 rounded-2xl blur opacity-20"></div>
+                  <div className="relative bg-white/90 dark:bg-zinc-900/90 backdrop-blur-xl rounded-2xl p-6 shadow-xl border border-white/30 dark:border-zinc-700/50">
+                    <div className="flex items-start gap-4">
+                      <div className="shrink-0">
+                        <div className="bg-linear-to-br from-green-500 to-emerald-500 rounded-xl p-3 shadow-lg">
+                          <Clock className="w-6 h-6 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="font-bold text-lg mb-3 text-foreground">Factory Hours</h3>
+                        <div className="space-y-2">
+                          {factoryHours.map((schedule, index) => (
+                            <div
+                              key={index}
+                              className="flex justify-between py-2 border-b border-border last:border-0"
+                            >
+                              <span className="text-sm text-muted-foreground">{schedule.day}</span>
+                              <span className="text-sm font-semibold text-foreground">
+                                {schedule.hours}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Get Directions Button */}
+                <Button
+                  onClick={handleGetDirections}
+                  className="w-full bg-linear-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white border-0 rounded-xl px-6 py-6 font-bold text-lg shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 active:scale-95 group"
+                >
+                  <div className="flex items-center justify-center gap-2">
+                    <Navigation className="w-5 h-5 group-hover:rotate-45 transition-transform duration-300" />
+                    <span>Get Directions</span>
+                  </div>
+                </Button>
               </div>
             </div>
           </div>
